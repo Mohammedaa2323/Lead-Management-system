@@ -163,7 +163,7 @@ class TaskListView(View):
         else:
             data = Task.objects.all()
             return render(request,"task_list.html",{"data":data})
-
+        
 
 """localhost:8000/lead/detail/
 method:get,post"""
@@ -278,3 +278,15 @@ class NotificationListView(View):
             return render(request,"notification_list.html",{"data":data})
 
         return render(request,"notification_list.html",{"data":data})
+
+
+def summary_page(request):
+    total_leads = Lead.objects.count()
+    total_tasks = Task.objects.count()
+    
+    context = {
+        'total_leads': total_leads,
+        'total_tasks': total_tasks,
+    }
+    
+    return render(request, 'summary_page.html', context)

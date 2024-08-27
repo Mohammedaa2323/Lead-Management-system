@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.utils import timezone
 
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
@@ -60,7 +61,7 @@ class Lead(models.Model):
 class Task(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+
     title = models.CharField(max_length=200)
 
     lead = models.ForeignKey(Lead, on_delete=models.CASCADE, related_name='tasks')
@@ -75,15 +76,29 @@ class Task(models.Model):
 
     updated_date = models.DateTimeField(auto_now=True)
 
+
+
+
 class Notification(models.Model):
+
     NOTIFICATION_TYPE_CHOICES = [
+
         ('LeadAssignment', 'Lead Assignment'),
+
         ('StatusChange', 'Status Change'),
+        
         ('TaskDeadline', 'Task Deadline'),
+    
     ]
+    
     type = models.CharField(max_length=20, choices=NOTIFICATION_TYPE_CHOICES)
+    
     message = models.TextField()
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+    
     lead = models.ForeignKey(Lead, on_delete=models.CASCADE, related_name='notifications', null=True, blank=True)
+    
     is_read = models.BooleanField(default=False)
+
     created_at = models.DateTimeField(auto_now_add=True)
