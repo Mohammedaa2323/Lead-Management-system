@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+  <div class="relative w-full bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+      <div class="inline-flex items-center space-x-2">
+        <span>        </span>
+        <div></div>
+        <span class="font-bold">{{request.user.role}} : {{request.user}}</span>
+      </div>
+      <div class="hidden lg:block">
+        <ul class="inline-flex space-x-8">
+          <li>
+            <a
+              href="{%url 'index'%}"
+              class="text-sm font-semibold text-gray-800 hover:text-gray-900"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href=""
+              class="text-sm font-semibold text-gray-800 hover:text-gray-900"
+            >
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-sm font-semibold text-gray-800 hover:text-gray-900"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="hidden lg:block">
+        <!-- <button
+          type="button"
+          class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        >
+          Button text
+        </button> -->
+      </div>
+      <div class="lg:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-6 w-6 cursor-pointer"
+        >
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </div>
+    </div>
+  </div>
+<section class="mx-auto w-full max-w-7xl px-4 py-4">
+  <div class="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+    <div>
+      <h2 class="text-lg font-semibold">Lead List</h2>
+      <p class="mt-1 text-sm text-gray-700">
+        This is a list of all Lead. You can add new Lead, View detail edit or
+        delete existing ones.
+      </p>
+    </div>
+    <div>
+      {%if messages%}
+      {%for m in messages%}
+      {{m}}
+      {%endfor%}
+      {%endif%}
+    </div>
+    <div>
+      <a href="{%url 'lead_add'%}" type=""
+      class="mt-4 ms-3 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+      Add New Lead
+    </a> 
+    </div>
+  </div>
+  <div class="mt-6 flex flex-col">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden border border-gray-200 md:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                >
+                  <span>Name</span>
+                </th>
+                <th
+                  scope="col"
+                  class="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
+                >
+                  staus
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                >
+                  Assigned To
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                >
+                  Descriptions
+                </th>
+                <th scope="col" class="px-5 py-3.5 text-left text-sm font-normal text-gray-700">
+                  Norification
+                </th>
+              </tr>
+            </thead>
+            {%for l in data%}
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap px-4 py-4">
+                  <div class="flex items-center">
+                    <div class="h-10 w-10 flex-shrink-0">
+                      <img
+                        class="h-10 w-10 rounded-full object-cover"
+                        src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1160&amp;q=80"
+                        alt=""
+                      />
+                    </div>
+
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900">
+                        {{l.name}}
+                      </div>
+                      <div class="text-sm text-gray-700">{{l.email}}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="whitespace-nowrap px-12 py-4">
+                  <div class="text-sm text-gray-900 "></div>
+                  <div class="text-sm text-gray-700">{{l.status}}</div>
+                </td>
+                <td class="whitespace-nowrap px-4 py-4">
+                  <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                    {{l.assigned_to}}
+                  </span>
+                </td>
+                <td class="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                  {{l.discreaption}}
+                </td>
+                <td class="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
+                  <div class="mt-4">
+                    <a href="{%url 'lead_detail' l.id%}" type=""
+                      class="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                      View
+                    </a>
+          
+                    <a href="{%url 'lead_update' l.id%}" type=""
+                      class="mt-4 ms-3 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                      update
+                    </a>
+          
+                    <a href="{%url 'lead_delete' l.id%}" type=""
+                    class="mt-4 ms-3 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                    delete
+                  </a> 
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            {%endfor%}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
